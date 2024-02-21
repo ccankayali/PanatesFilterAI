@@ -1,8 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './usersService';
 
-/* eslint-disable prettier/prettier */
 @Injectable()
 export class AuthService {
     constructor(
