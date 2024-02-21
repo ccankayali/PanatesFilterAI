@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Post,
@@ -7,14 +8,14 @@ import {
 } from '@nestjs/common';
 import { ContentService } from './content.service';
 
-/* eslint-disable prettier/prettier */
 @Controller('content-check')
 export class ContentController {
   constructor(private contentCheckService: ContentService) {}
 
   @Post()
   async check(@Body('content') content: string) {
-    const isContentValid = await this.contentCheckService.checkContent(content);
+    const contentDto = { content };
+    const isContentValid = await this.contentCheckService.checkContent(contentDto); // contentDto'yu argüman olarak kullan
     if (!isContentValid) {
       throw new HttpException('Content is not valid', HttpStatus.BAD_REQUEST);
     }
