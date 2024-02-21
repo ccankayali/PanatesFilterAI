@@ -1,4 +1,3 @@
-// /src/auth/jwt.strategy.ts
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
