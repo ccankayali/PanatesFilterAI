@@ -1,6 +1,5 @@
 /* eslint-disable prettier/prettier */
 import { Injectable } from "@nestjs/common";
-import { AiModule } from '../ai/ai.module';
 import { CheckContentDto } from './dto/check-content.dto';
 
 @Injectable()
@@ -11,10 +10,5 @@ export class ContentService {
         }
         
         return 'Content is valid and processed.';
-    }
-    constructor(private aiService: AiModule) {}
-
-    async getAnswer(question: string): Promise<string> {
-        return this.aiService.getAnswer(question);
     }
 }
