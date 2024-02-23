@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { PostService } from "./post.service";
 import { CreatePostDto } from './dto/create-post.dto';
 
@@ -17,5 +17,13 @@ export class PostController {
     return this.postService.findAll();
     }
     
-//! update and delete
+    @Put(':id')
+    async update(@Param('id') id: string, @Body() updatePostDto: CreatePostDto) {
+        return this.postService.update(id, updatePostDto);
+    }
+
+    @Delete(':id')
+    async delete(@Param('id') id: string) {
+        return this.postService.delete(id);
+    }
 }
