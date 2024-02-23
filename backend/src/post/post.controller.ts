@@ -9,7 +9,7 @@ export class PostController {
 
     @Post()
     async create(@Body() createPostDto: CreatePostDto) {
-    return this.postService.create(createPostDto);
+        return this.postService.create(createPostDto);
     }
 
     @Get()
