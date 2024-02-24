@@ -9,7 +9,6 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async create(email: string, password: string): Promise<User> {
-    // Benzersiz bir ID üretme. Burada basit bir örnek var, daha karmaşık bir mantık kullanabilirsiniz.
     const newId = await this.getNextUniqueId();
 
     const newUser = new this.userModel({
