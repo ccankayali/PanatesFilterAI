@@ -1,11 +1,17 @@
-/* eslint-disable prettier/prettier */
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
-export type userDocument = User & Document;
+export type UserDocument = Document & {
+  id: number; // Bağımsız benzersiz ID
+  email: string;
+  password: string;
+};
 
 @Schema()
 export class User {
+  @Prop()
+  id: number; // Bağımsız benzersiz ID alanı
+
   @Prop({ required: true, unique: true })
   email: string;
 
