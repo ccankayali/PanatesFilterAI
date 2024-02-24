@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 export type UserDocument = Document & {
-  id: number; // Bağımsız benzersiz ID
+  id: number;
   email: string;
   password: string;
 };
@@ -10,7 +10,7 @@ export type UserDocument = Document & {
 @Schema()
 export class User {
   @Prop()
-  id: number; // Bağımsız benzersiz ID alanı
+  id: number;
 
   @Prop({ required: true, unique: true })
   email: string;
