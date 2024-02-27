@@ -1,31 +1,29 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
-import { PostService } from "./post.service";
-import { CreatePostDto } from './dto/create-post.dto';
+import { Body, Controller, Delete, Get, Param, Post as HTTPPost, Put } from '@nestjs/common'; // HTTPPost olarak yeniden adlandırıldı
+import { PostService } from './post.service';
+import { CreatePostDto, UpdatePostDto } from './dto/create-post.dto'; // UpdatePostDto'yu import et
 
 @Controller('posts')
 export class PostController {
     constructor(private readonly postService: PostService){}
 
-    @Post('create')
+    @HTTPPost('create')
     async create(@Body() createPostDto: CreatePostDto) {
         return this.postService.create(createPostDto);
     }
 
-    @Get('search')
+    @Get()
     async findAll() {
         return this.postService.findAll();
     }
     
     @Put('update/:id')
-    async update(@Param('id') id: string, @Body() updatePostDto: CreatePostDto) {
-        const postId = Number(id);
-        return this.postService.update(postId, updatePostDto);
+    async update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
+        return this.postService.update(id, updatePostDto);
     }
 
     @Delete('delete/:id')
     async delete(@Param('id') id: string) {
-        const postId = Number(id);
-        return this.postService.delete(postId);
+        return this.postService.remove(id);
     }
 }
