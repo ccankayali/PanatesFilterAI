@@ -12,8 +12,22 @@ export class PostService {
 
   async create(createPostDto: CreatePostDto): Promise<any> {
     // Kullanıcı içeriğini ve soruyu birleştir
-    const prompt = `Aşağıdaki metni inceleyin: "${createPostDto.content}"\nBu metinde hakaret, argo veya herhangi bir uygunsuz içerik var mı? Eğer varsa, lütfen içerikteki uygunsuz ifadeleri belirtin.\nEğer uygunsuz içerik yoksa, "Metin temiz." şeklinde yanıt verin.`;
+const prompt = `
+      Metni dikkatlice inceleyin: "${createPostDto.content}"
+      Bu metin üzerinde aşağıdaki hususlara göre bir değerlendirme yapın:
+      - Hakaret içeren ifadeler
+      - Argolu kelimeler
+      - Cinsiyetçi, ırkçı, ayrımcı veya herhangi bir şekilde rahatsız edici ifadeler
+      - Sexist ifadeler.
+      - Küçük düşürücü kelimeler.
+      - Aşağılıyıcı ifadeler vb. her türlü ifade.
 
+      - Sadece engellememen gereken ifade topluluğu: hastalık ve estetik tarafında geçen cümle toplulukları. Oradada kötü anlamda ya da uygunsuz anlamda kullanım varsa engelle.
+      
+      Metinde bu tür ifadeler varsa, lütfen içerikteki uygunsuz ifadeleri açık ve net bir şekilde belirtin.
+      Eğer metin temizse, yani herhangi bir uygunsuz içerik içermiyorsa, "Metin temiz." ifadesi ile yanıtlayın.
+      Bu analiz, metni hem genel ahlaki normlar hem de topluluk kuralları çerçevesinde değerlendirmek için yapılır. Lütfen, değerlendirme yaparken bu kuralları temel alın.
+      `;
     const response = await this.sendToChatGPT(prompt);
 
     if (response.success === false) {
