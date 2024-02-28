@@ -11,7 +11,6 @@ export class PostService {
   constructor(@InjectModel(Post.name) private postModel: Model<PostDocument>) {}
 
   async create(createPostDto: CreatePostDto): Promise<any> {
-    // Kullanıcı içeriğini ve soruyu birleştir
 const prompt = `
       Metni dikkatlice inceleyin: "${createPostDto.content}"
       Bu metin üzerinde aşağıdaki hususlara göre bir değerlendirme yapın:
@@ -23,7 +22,7 @@ const prompt = `
       - Aşağılıyıcı ifadeler vb. her türlü ifade.
 
       - Sadece engellememen gereken ifade topluluğu: hastalık ve estetik tarafında geçen cümle toplulukları. Oradada kötü anlamda ya da uygunsuz anlamda kullanım varsa engelle.
-      
+
       Metinde bu tür ifadeler varsa, lütfen içerikteki uygunsuz ifadeleri açık ve net bir şekilde belirtin.
       Eğer metin temizse, yani herhangi bir uygunsuz içerik içermiyorsa, "Metin temiz." ifadesi ile yanıtlayın.
       Bu analiz, metni hem genel ahlaki normlar hem de topluluk kuralları çerçevesinde değerlendirmek için yapılır. Lütfen, değerlendirme yaparken bu kuralları temel alın.
