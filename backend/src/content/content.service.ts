@@ -3,7 +3,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import axios from 'axios';
-import { image, ImageDocument } from './entities/content.entity';
+import { Image, ImageDocument } from './entities/content.entity';
 
 export interface SafeSearchResponse {
   adult: string;
@@ -18,7 +18,7 @@ export class ContentService {
   private readonly visionApiUrl = 'https://vision.googleapis.com/v1/images:annotate';
   private readonly apiKey = process.env.GOOGLE_CLOUD_VISION_API_KEY;
 
-  constructor(@InjectModel(image.name) private imageModel: Model<ImageDocument>) {}
+  constructor(@InjectModel(Image.name) private imageModel: Model<ImageDocument>) {}
 
   async analyzeAndSaveImage(imageUri: string): Promise<{ success: boolean; message: string; data?: any }> {
     let analysisResults: SafeSearchResponse;

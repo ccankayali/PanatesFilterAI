@@ -1,8 +1,9 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+/* eslint-disable prettier/prettier */
+ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema()
-export class image {
+export class Image {
   @Prop()
   imageUrl: string;
 
@@ -10,5 +11,5 @@ export class image {
   analysisResults: Record<string, any>;
 }
 
-export type ImageDocument = image & Document;
-export const ImageSchema = SchemaFactory.createForClass(image);
+export type ImageDocument = Image & Document;
+export const ImageSchema = SchemaFactory.createForClass(Image);
