@@ -12,6 +12,11 @@ export class PostService {
 
   async create(createPostDto: CreatePostDto): Promise<any> {
 
+
+  // ! ÜCRETSİZ CHATGPT 3.5 TURBO MODELİNİ KULLANDIĞIMIZ VE 0.5 SAPMA PAYI VERDİĞİMİZ İÇİN HER KÜFÜR VEYA HAKARET ANLAŞILMIYOR
+  // ! BU NOKTADA REGEX KULLANARAK MANUEL ENGELLEMEYE GEÇEBİLİRİZ
+  // ! GPT 3.5 SINIRLI BİR KOTAYA SAHİP ŞU AN ÜCRETSİZ HESAPTAN ÇEKİLEN API ÜZERİNDEN ALINIYOR
+
   const forbiddenPatterns = [
     /a[\W\s_]*m[\W\s_]*k/gi, // "a*m*k", "a m k", "amk", vb.
     /s[\W\s_]*k/gi, // "s*k", "s k", "sk", vb.
