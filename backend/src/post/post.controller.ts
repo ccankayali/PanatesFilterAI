@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
-import { Body, Controller, Delete, Get, Param, Post as HTTPPost, Put } from '@nestjs/common'; // HTTPPost olarak yeniden adlandırıldı
+import { Body, Controller, Delete, Get, Param, Post as HTTPPost, Put } from '@nestjs/common';
 import { PostService } from './post.service';
-import { CreatePostDto, UpdatePostDto } from './dto/create-post.dto'; // UpdatePostDto'yu import et
+import { CreatePostDto, UpdatePostDto } from './dto/create-post.dto';
 
 @Controller('posts')
 export class PostController {
