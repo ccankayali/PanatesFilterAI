@@ -58,6 +58,11 @@ const prompt = `
       - Tıbbi veya estetik konularla ilgili ifadelerin yanlışlıkla engellenmemesi; bu ifadelerin kötü niyet taşımaması gerektiği unutulmamalıdır.
       - Açıkça yazılmış veya gizlenmiş tüm küfür ve hakaret ifadelerinin yanı sıra, özel karakterlerle yapılan tüm uygunsuz ifadelerin tespiti ve engellenmesi.
       - Kısaltılmış tüm küfürleri (örneğin: amk aq oç) içeren tüm ifadeler engellenmeli.
+      - Şerefsiz, kaltak, orospu, fahişe, kancık, gancık, metres gibi kadınları alçaltacak kelime gruplarını engelle.
+      - Gavur, cevur gibi yabancı dine mensup insanları aşağılıyıcı ifadeleri engelle.
+      - Yavşak, it, bit, enik, inik, sıpa gibi hayvanlar üzerinden insanları aşağılamaya çalışan ifadeleri engelle.
+      - Bir kadın karşı yapılan "seni karım/metresim/orospum" yapıcam gibi ifadeleri engelle.
+      - Birine karşı "sana 31 çekicem, mastürbasyon yapıcam" gibi ifadeleri engelle.
 
       Eğer metinde bu tür ifadeler tespit ederseniz, içerikteki uygunsuz ifadeleri net bir şekilde belirleyin ve metni engelleyin. Metin temizse, yani herhangi bir uygunsuz içerik içermiyorsa, "Metin temiz." şeklinde yanıt verin.
 
@@ -84,7 +89,7 @@ const prompt = `
   }
 
   private async sendToChatGPT(prompt: string): Promise<{ success: boolean; message: string }> {
-    const apiKey = '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';
+    const apiKey = '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';
     try {
       const response = await axios.post('https://api.openai.com/v1/chat/completions', {
         model: 'gpt-3.5-turbo',
