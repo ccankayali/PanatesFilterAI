@@ -6,18 +6,18 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PostModule } from './post/post.module';
 import { AuthModule } from './auth/auth.module';
-import { ContentModule } from './content/content.module';
+import { ImageModule } from './image/image.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: './src/.env',
+      envFilePath: '../.env',
       isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.MONGODB_URI),
+    MongooseModule.forRoot('mongodb://localhost:27017/mydatabase'),
     PostModule,
     AuthModule,
-    ContentModule,
+    ImageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
