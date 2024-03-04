@@ -30,6 +30,10 @@ export class ImageService {
         ['LIKELY', 'VERY_LIKELY'].includes(analysisResults[category]),
       );
 
+      // ! BU NOKTADA LIKELY=%80+ DERSEK BURAYA ÖZEL OLARAK BLURLAMA VEREBİLİRİZ
+      // ! %80 ÇIPLAKLIK OLAN İÇERİK REDDIT VEYA BENZER BLOGLARDAKİ GİBİ BLURLU GÖSTERİLEBİLİR
+      // ! %100 OLAN RESİMLERİ YİNE BANLARIZ
+
       if (!isExplicitContent) {
         const createdImage = await new this.imageModel({
           imageUrl: imageUri,
