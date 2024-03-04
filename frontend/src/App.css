@@ -1,0 +1,86 @@
+/* Temel Ayarlar */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #121212; /* Arka planı siyah yap */
+  color: #ffffff; /* Metin rengini beyaz yap */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Uygulama Konteyneri */
+.App {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #242424; /* Konteyner arka planını koyu gri yap */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Form Stilleri */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.textarea {
+  padding: 10px;
+  border: 1px solid #333333; /* Border rengini koyu yap */
+  background-color: #181818; /* Textarea arka planını daha koyu gri yap */
+  border-radius: 4px;
+  resize: none;
+  height: 120px;
+  font-size: 16px;
+  color: #ffffff; /* Textarea metin rengini beyaz yap */
+}
+
+.button {
+  background-color: #007bff;
+  color: #ffffff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.button:disabled {
+  background-color: #333333;
+  cursor: not-allowed;
+}
+
+/* Yanıt Mesajı Stilleri */
+.responseMessage {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  background-color: #dc3545; /* Hata mesajı için kırmızı */
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .App {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .textarea, .button {
+    font-size: 14px;
+  }
+}
