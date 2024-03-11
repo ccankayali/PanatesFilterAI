@@ -9,7 +9,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setResponseMessage(''); // Önceki mesajı temizle
+    setResponseMessage('');
 
     try {
       const response = await fetch('http://localhost:5000/api/posts/create', {
@@ -17,7 +17,7 @@ function App() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ content: content.trim() }) // Boşlukları kaldır
+        body: JSON.stringify({ content: content.trim() })
       });
 
       if (!response.ok) {
@@ -25,13 +25,12 @@ function App() {
       }
 
       const data = await response.json();
-      // Backend'den gelen yanıt mesajını ve varsa detayları ayarla
       let displayMessage = `Message: ${data.message}`;
       if (data.details) {
         displayMessage += ` | Details: ${data.details}`;
       }
-      setResponseMessage(displayMessage); // Kullanıcıya gösterilecek mesajı ayarla
-      setContent(''); // İçeriği temizle
+      setResponseMessage(displayMessage);
+      setContent('');
     } catch (error) {
       console.error('Error:', error);
       setResponseMessage(`Error sending data: ${error.message}`);
