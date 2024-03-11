@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { INestApplication } from "@nestjs/common"
 import { Test, TestingModule } from "@nestjs/testing";
-import { AppModule } from "./app.module";
+import { AppModule } from "../app.module";
 
 describe('AppModule', () => {
     let app: INestApplication;
