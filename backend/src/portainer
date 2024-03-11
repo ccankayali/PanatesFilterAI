@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: nginx:latest
+    ports:
+      - "5002:5002"
+    depends_on:
+      - backend
+    volumes:
+      - type: bind
+        source: /home/canpanates/Desktop/PanatesFilterAI/frontend
+        target: /usr/share/nginx/html
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  backend:
+    image: node:20-alpine
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/mydatabase
+      - OPEN_API_KEY=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 
+    depends_on:
+      - mongo
+    working_dir: /app 
+    command: npm run start:dev
+    volumes:
+      - /home/canpanates/Desktop/PanatesFilterAI/backend:/app 
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  mongo:
+    image: mongo:4.4.6
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+    restart: unless-stopped
+
+volumes:
+  mongo-data:
+    external: true
+
+networks:
+  app-network:
+    driver: bridge
