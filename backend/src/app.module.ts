@@ -7,6 +7,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { PostModule } from './post/post.module';
 import { AuthModule } from './auth/auth.module';
 import { ImageModule } from './image/image.module';
+import { GptModule } from './gpt/gpt.module';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { ImageModule } from './image/image.module';
     PostModule,
     AuthModule,
     ImageModule,
+    GptModule,
   ],
   controllers: [AppController],
   providers: [AppService],
