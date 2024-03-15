@@ -48,6 +48,10 @@ export class PostService {
 // ! AŞAĞIDAKİ GPT-3.5 ÜZERİNDE TOKEN AZALTABİLİR VE HAKARET VAR/YOK ŞEKLİNDE CEVAP VERECEK KADAR İYİLEŞTİREBİLİRİZ (PROMPT MÜHENDİSLİĞİ)
 // ! SADECE HAKARET VAR/YOK + HAKARET SEBEBİ ŞEKLİNDEDE 200-300 TOKEN CİVARINA İNDİREBİLİRİZ
 
+
+// ! 170 TOKEN + CONTENT
+// const prompt = `"${content}" içeriğini inceleyin ve çıplaklık, sahtekarlık, şiddet, müstehcenlik, seksizm, nefret söylemi, ırkçılık, ayrımcılık veya aşağılama içerip içermediğini kontrol edin. Bu tür içerikler varsa, hangi kategoriler altında olduklarını belirtin. İçerik temizse, "Metin temiz." şeklinde yanıt verin.`;
+
 const prompt = `Metni dikkatlice inceleyin: "${createPostDto.content}" ve değerlendirin. Değerlendirme sürecinizde, hem topluluk kurallarını hem de genel ahlaki normları göz önünde bulundurmanız gerekmektedir. İçerik, küresel çapta kabul edilebilir dil standartlarına uygun olmalıdır. Aşağıda belirtilen özel kriterleri dikkatlice değerlendirerek içeriğin uygunluğunu belirleyin:
 
     Her dildeki açık ve gizli hakaretleri ve küfürleri tespit edip engelleyin.
@@ -93,7 +97,7 @@ const prompt = `Metni dikkatlice inceleyin: "${createPostDto.content}" ve değer
           role: 'user',
           content: prompt
         }],
-        temperature: 0.7,
+        temperature: 1.0,
         max_tokens: 1000,
       }, {
         headers: {
