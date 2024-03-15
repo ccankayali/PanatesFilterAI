@@ -8,6 +8,7 @@ import { PostModule } from './post/post.module';
 import { AuthModule } from './auth/auth.module';
 import { ImageModule } from './image/image.module';
 import { GptModule } from './gpt/gpt.module';
+import { AsistantModule } from './asistant/asistant.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { GptModule } from './gpt/gpt.module';
     AuthModule,
     ImageModule,
     GptModule,
+    AsistantModule,
   ],
   controllers: [AppController],
   providers: [AppService],
