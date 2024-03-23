@@ -50,24 +50,19 @@ export class PostService {
 
 
 // ! 170 TOKEN + CONTENT
-// const prompt = `"${content}" içeriğini inceleyin ve çıplaklık, sahtekarlık, şiddet, müstehcenlik, seksizm, nefret söylemi, ırkçılık, ayrımcılık veya aşağılama içerip içermediğini kontrol edin. Bu tür içerikler varsa, hangi kategoriler altında olduklarını belirtin. İçerik temizse, "Metin temiz." şeklinde yanıt verin.`;
+const prompt = `"${content}" içeriğini incleyin. Her kategori için, metinde o kategorinin içeriğinin var olma olasılığını, 0 ile 5 arasında bir değerle, ondalık noktasından sonra 6 basamağa kadar hassasiyetle belirtin. Değerlendirmenizde aşağıdaki kategorileri kullanın:
 
-const prompt = `Metni dikkatlice inceleyin: "${createPostDto.content}" ve değerlendirin. Değerlendirme sürecinizde, hem topluluk kurallarını hem de genel ahlaki normları göz önünde bulundurmanız gerekmektedir. İçerik, küresel çapta kabul edilebilir dil standartlarına uygun olmalıdır. Aşağıda belirtilen özel kriterleri dikkatlice değerlendirerek içeriğin uygunluğunu belirleyin:
-
-    Her dildeki açık ve gizli hakaretleri ve küfürleri tespit edip engelleyin.
-    Argüman, cinsiyetçilik, ırkçılık, ayrımcılık veya rahatsız edici herhangi bir ifadeyi tanımlayıp engelleyin.
-    Aile ve dini değerlere yönelik saldırıları içeren ifadeleri reddedin.
-    Küçük düşürücü, aşağılayıcı veya uygunsuz içerikleri filtreleyin.
-    Özel karakterler kullanılarak gizlenmiş veya modifiye edilmiş küfür ve hakaretleri engelleyin.
-    Meslek gruplarına yönelik aşağılayıcı ifadeler veya imaları engelleyin.
-    Tıbbi veya estetik konuları kötü niyet taşımadan ele alın.
-    Kısaltmalar dahil, tüm küfürleri tanıyıp engelleyin.
-    Kadınları veya herhangi bir grubu aşağılayıcı sözcük gruplarını engelleyin.
-    Dini veya etnik gruplara karşı aşağılayıcı ifadeleri engelleyin.
-    Hayvan isimlerini kullanarak yapılan aşağılamaları engelleyin.
-    Cinsel içerikli veya istismar edici ifadeleri reddedin.
-
-    Eğer bu kriterlere göre içerikte uygunsuz ifadeler tespit ederseniz, lütfen içeriği engelleyin ve uygunsuz ifadeleri açıkça belirtin. Eğer içerik temiz ise, yani bu kriterlerden herhangi birini ihlal etmiyorsa, 'Metin temiz.' şeklinde yanıt verin. Bu değerlendirme, içeriğin niyetini ve bağlamını dikkate alarak yapılmalıdır.`;
+    Cinsellik
+    Nefret söylemi
+    Taciz
+    Kendine zarar verme
+    Cinsellik/çocuklar
+    Nefret/tehdit edici
+    Şiddet/grafik
+    Kendine zarar verme/niyet
+    Kendine zarar verme/talimatlar
+    Taciz/tehdit edici
+    Şiddet`;
 
     const response = await this.sendToChatGPT(prompt);
 
