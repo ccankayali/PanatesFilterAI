@@ -17,7 +17,7 @@ export class GptService {
   private async gptModeration(
     content: string,
   ): Promise<{ success: boolean; results: any }> {
-    const apiKey = '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';
+    const apiKey = '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';
     try {
       const response = await axios.post(
         'https://api.openai.com/v1/moderations',

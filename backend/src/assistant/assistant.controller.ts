@@ -15,7 +15,7 @@ export class OpenaiController {
     async createAssistant(@Body() createAssistantDto: CreateAssistantDto) {
         try {
             const { name, instructions, model } = createAssistantDto;
-            const assistant = await this.openaiService.createAssistant(name, instructions, model);
+            const assistant = await this.openaiService.createAssistant(name, instructions, model);  
             const thread = await this.openaiService.createThread();
             this.assistantId = assistant.id;
             this.threadId = thread.id;
@@ -30,7 +30,7 @@ export class OpenaiController {
         const { content, threadId, role } = createContentDto;
 
         await this.openaiService.createMessage({
-            content: content + 'Lütfen metni dikkatlice okuyun ve aşağıdaki moderasyon kategorilerine göre içeriğin uygunluğunu değerlendirin. Her kategori için, metinde o kategorinin içeriğinin var olma olasılığını, 0 ile 1 arasında bir değerle, ondalık noktasından sonra 2 basamağa kadar hassasiyetle belirtin. Değerlendirmenizde aşağıdaki kategorileri kullanın:\n\n- Cinsellik\n- Nefret söylemi\n- Taciz\n- Kendine zarar verme\n- Cinsellik/çocuklar\n- Nefret/tehdit edici\n- Şiddet/grafik\n- Kendine zarar verme/niyet\n- Kendine zarar verme/talimatlar\n- Taciz/tehdit edici\n- Şiddet\n- Irkçılık. *Yanıt olarak sadece ilgili kategori ve yanında ondalık oranı, json formatında döndürün.*',
+            content: content + 'Aşağıdaki metni inceleyin ve içeriğin uygunluğunu değerlendirin. Cinsellik, Nefret Söylemi, Taciz, Kendine Zarar Verme, Çocuklara Yönelik Cinsellik İçeriği, Nefret/Tehdit Edici İfade, Şiddet/Grafik İçerik, Kendine Zarar Verme Niyeti, Kendine Zarar Verme İçerikli Talimatlar, Taciz/Tehdit Edici İfade, Şiddet İçeriği, Irkçılık kategorileri için 0-1 arası olasılık değerlerini, ondalık noktasından sonra iki basamağa kadar hassasiyetle, küçükten büyüğe sıralayarak JSON formatında verin. Dil farklılıklarını ve kültürel bağlamları göz önünde bulundurun. Örnek JSON çıktısı: {Cinsellik: 0.00, Nefret Söylemi: 0.01, Taciz: 0.00} Dil: Çokdilli.',
             threadId: threadId,
             role: role
         });
@@ -50,11 +50,14 @@ export class OpenaiController {
     @Get('check-status/:runId')
     async checkStatusAndPrintMessages(@Param('runId') runId: string) {
         const runStatus = await this.openaiService.checkStatus(runId);
+        let onmessage;
         if (runStatus.status === "completed") {
             const messages = await this.openaiService.getMessages();
             return { runStatus, messages };
         } else {
+            onmessage = 'Run is not completed yet try again';
             return { runStatus, onmessage };
         }
     }
+
 }
